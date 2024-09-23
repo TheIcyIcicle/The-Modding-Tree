@@ -8,7 +8,7 @@ let modInfo = {
 	discordName: "TheIcyIcicle",
 	discordLink: "",
 	initialStartPoints: new Decimal (5), // Used for hard resets and new players
-	offlineLimit: 24,  // In hours
+	offlineLimit: 2,  // In hours
 }
 
 // Set your version in num and name
@@ -23,7 +23,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- More Developing.<br>
 		- Even More Development :sob:`
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+let winText = `Layered Tree? Where are the Layers?`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -44,6 +44,8 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade('p', 11)) gain = gain.times(2.5)
+	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
 	return gain
 }
 
@@ -57,7 +59,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("50"))
+	return player.points.gte(new Decimal("e500"))
 }
 
 
