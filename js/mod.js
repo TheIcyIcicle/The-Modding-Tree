@@ -3,11 +3,11 @@ let modInfo = {
 	id: "IcyDev",
 	author: "TheIcyIcicle",
 	pointsName: "points",
-	modFiles: ["layers.js", "tree.js"],
+	modFiles: ["prestige.js", "achievements.js", "layers.js", "tree.js"],
 
 	discordName: "TheIcyIcicle",
 	discordLink: "",
-	initialStartPoints: new Decimal (5), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 2,  // In hours
 }
 
@@ -23,7 +23,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- More Developing.<br>
 		- Even More Development :sob:`
 
-let winText = `Layered Tree? Where are the Layers?`
+let winText = `Okay there are layers but thats still nothing.`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -44,8 +44,14 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	// achievements
+	if (hasAchievement('a', 11)) gain = gain.times(2.5)
+	// layers
+
+	// prestige
 	if (hasUpgrade('p', 11)) gain = gain.times(2.5)
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
+	if (hasUpgrade('p', 23)) mult = mult.times(upgradeEffect('p', 23))
 	return gain
 }
 
@@ -59,7 +65,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e500"))
+	return player.points.gte(new Decimal("15000"))
 }
 
 
