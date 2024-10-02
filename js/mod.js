@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Layered Tree",
 	id: "IcyDev",
 	author: "TheIcyIcicle",
-	pointsName: "points",
+	pointsName: "Points",
 	modFiles: ["prestige.js", "achievements.js", "layers.js", "tree.js"],
 
 	discordName: "TheIcyIcicle",
@@ -45,7 +45,7 @@ function getPointGen() {
 
 	let gain = new Decimal(1)
 	// achievements
-	if (hasAchievement('a', 11)) gain = gain.times(2.5)
+	if (hasAchievement('a', 13)) gain = gain.times(2.5)
 	// layers
 
 	// prestige
@@ -65,7 +65,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("15000"))
+	return player.points.gte(new Decimal("150000"))
 }
 
 

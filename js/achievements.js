@@ -1,17 +1,15 @@
 addLayer("a", {
-    name: "achievements",
+    name: "Achievements",
     symbol: "A",
     position: 0,
-    startData() {
-        return {
-            unlocked: true,
-        }
-    },
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0)
+    }},
     color: "#F1E41E",
-    row: "side",
-    layerShown() {
-        return true
-    },
+    resource: "Achievements",
+    row: 'side',
+    layerShown(){return true},
     achievements: {
         rows: 1,
         cols: 5,
@@ -35,6 +33,14 @@ addLayer("a", {
                 return player.p.points.gte(100)
             },
             tooltip: "Get 100 Prestige Points. Reward: 2.5x Points",
+        },
+        14: {
+            name: "what",
+            done() {
+                return player.l.unlocked
+            },
+            tooltip: "What, did you expect a spoiler here?",
+            doneTooltip: "Unlock the Layers Layer..?",
         },
     }
 })
