@@ -25,6 +25,7 @@ addLayer("p", {
         mult = new Decimal(1)
         // layer
         if (hasUpgrade('l', 11)) mult = mult.times(2)
+        if (hasUpgrade('l', 12)) mult = mult.times(2.5)
         // prestige
         if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
         if (hasUpgrade('p', 21)) mult = mult.times(upgradeEffect('p', 21))
@@ -76,10 +77,10 @@ addLayer("p", {
         },
         23: {
             title: "More Points!",
-            description: "Unlocks a new layer and Increases point gain by Prestige Points",
+            description: "Unlocks a new layer and Increases point gain by Prestige Points, But slightly Weaker.",
             cost: new Decimal(250),
             effect() {
-                return player[this.layer].points.add(1).pow(0.75)
+                return player[this.layer].points.add(1).pow(0.4)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },

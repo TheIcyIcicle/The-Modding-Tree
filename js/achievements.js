@@ -39,8 +39,22 @@ addLayer("a", {
             done() {
                 return player.l.unlocked
             },
-            tooltip: "What, did you expect a spoiler here?",
+            tooltip: "what",
             doneTooltip: "Unlock the Layers Layer..?",
+        },
+        15: {
+            name: "Wait Wait, Isn't this a bit TOO strong?",
+            done() {
+                return (hasUpgrade('l', 12))
+            },
+            tooltip: "Purchase the second Layer Upgrade.",
+        },
+        21: {
+            name: "Layers upon Layers.",
+            done() {
+                return (hasUpgrade('l', 23))
+            },
+            tooltip: "Unlock another layer INSIDE the layers layer. This is getting more confusing to say every second...",
         },
     }
 })

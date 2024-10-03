@@ -11,7 +11,7 @@ addLayer("l", {
             key: "l", // What the hotkey button is. Use uppercase if it's combined with shift, or "ctrl+x" for holding down ctrl.
             description: "L: Reset Prestige Points for Layer Points.", // The description of the hotkey that is displayed in the game's How To Play tab
             onPress() { if (player.l.unlocked) doReset("l") },
-            unlocked() {if (hasUpgrade('p', 23))return true; else return false} // Determines if you can use the hotkey, optional
+            unlocked() {return player.l.unlocked || hasUpgrade('p', 23)} // Determines if you can use the hotkey, optional
         }
     ],
     color: "#575757",
@@ -37,6 +37,11 @@ addLayer("l", {
             title: "Layers...",
             description: "What do they mean? 2x Prestige Points",
             cost: new Decimal(1),
+        },
+        12: {
+            title: "Layer Up!",
+            description: "A Fragment of Power. 5x Points and 2.5x Prestige Points!",
+            cost: new Decimal(2),
         },
     },
 })

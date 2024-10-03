@@ -44,14 +44,15 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	// additives
+	if (hasUpgrade('p', 11)) gain = gain.add(1.5)
 	// achievements
 	if (hasAchievement('a', 13)) gain = gain.times(2.5)
 	// layers
-
+	if (hasUpgrade('l', 12)) gain = gain.times(5)
 	// prestige
-	if (hasUpgrade('p', 11)) gain = gain.times(2.5)
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
-	if (hasUpgrade('p', 23)) mult = mult.times(upgradeEffect('p', 23))
+	if (hasUpgrade('p', 23)) gain = gain.times(upgradeEffect('p', 23))
 	return gain
 }
 
