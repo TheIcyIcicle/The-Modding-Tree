@@ -48,7 +48,7 @@ addLayer("p", {
             description: "The Second Upgrade, Point gain increases as you gain more Prestige Points.",
             cost: new Decimal(2),
             effect() {
-                return player[this.layer].points.add(1).pow(0.5)
+                const effect = player[this.layer].points.add(1).pow(0.5); if (effect > 25) return 25; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -80,7 +80,7 @@ addLayer("p", {
             description: "Unlocks a new layer and Increases point gain by Prestige Points, But slightly Weaker.",
             cost: new Decimal(250),
             effect() {
-                return player[this.layer].points.add(1).pow(0.4)
+                const effect = player[this.layer].points.add(1).pow(0.4); if (effect > 20) return 20; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
