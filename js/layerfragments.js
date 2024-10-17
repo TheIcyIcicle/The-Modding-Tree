@@ -1,0 +1,47 @@
+addLayer("lf", {
+    name: "Layer Fragments", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "L", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: false,
+		points: new Decimal(0),
+    }},
+    hotkeys: [
+        {
+            key: "f", // What the hotkey button is. Use uppercase if it's combined with shift, or "ctrl+x" for holding down ctrl.
+            description: "F: Reset Layer Points for Layer Fragments.", // The description of the hotkey that is displayed in the game's How To Play tab
+            onPress() { if (player.lf.unlocked) doReset("lf") },
+            unlocked() {return player.lf.unlocked || hasUpgrade('l', 21)} // Determines if you can use the hotkey, optional
+        }
+    ],
+    color: "#757575",
+    requires: new Decimal(100), // Can be a function that takes requirement increases into account
+    resource: "Layer Fragments", // Name of prestige currency
+    baseResource: "Layer Points", // Name of resource prestige is based on
+    baseAmount() {return player.l.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.5, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        let mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        let exp = new Decimal(1)
+        return exp
+    },
+    row: 11, // Row the layer is in on the tree (0 is the first row)
+    displayRow: 'side',
+    layerShown(){return player.lf.unlocked || hasUpgrade('l', 21)},
+    upgrades: {
+        11: {
+            title: "Fragmented Layers",
+            description: "2x Layer Points and begin Generating Fragments nop nevermind no more fragment generation it refuses to work :(",
+            cost: new Decimal(1),
+        },
+        12: {
+            title: "Fragmented Points",
+            description: "^1.1 Points, 2x Prestige Points More layer Upgrades, Inflate.",
+            cost: new Decimal(3),
+        },
+    },
+})

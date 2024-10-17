@@ -11,7 +11,7 @@ addLayer("a", {
     row: 'side',
     layerShown(){return true},
     achievements: {
-        rows: 1,
+        rows: 2,
         cols: 5,
         11: {
             name: "Prestige!",
@@ -50,11 +50,25 @@ addLayer("a", {
             tooltip: "Purchase the second Layer Upgrade.",
         },
         21: {
+            name: "Another Powerful Upgrade!",
+            done() {
+                return (hasUpgrade('l', 15))
+            },
+            tooltip: "Purchase the Fifth Layer Upgrade.",
+        },
+        22: {
             name: "Layers upon Layers.",
             done() {
-                return (hasUpgrade('l', 23))
+                return (hasUpgrade('l', 21))
             },
-            tooltip: "Unlock another layer INSIDE the layers layer. This is getting more confusing to say every second...",
+            tooltip: "Unlock another Layer from Layers. This is getting more confusing to say every second...",
+        },
+        23: {
+            name: "Me when pow(1.1)",
+            done() {
+                return (hasUpgrade('lf', 12))
+            },
+            tooltip: "Get the second upgrade in the Layer Fragments Layer. Reward: 1.5x Layer Points",
         },
     }
 })

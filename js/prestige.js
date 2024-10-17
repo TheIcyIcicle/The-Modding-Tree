@@ -22,17 +22,21 @@ addLayer("p", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        let mult = new Decimal(1)
+        // layer fragments
+        if (hasUpgrade('lf', 12)) mult = mult.times(2)
         // layer
         if (hasUpgrade('l', 11)) mult = mult.times(2)
         if (hasUpgrade('l', 12)) mult = mult.times(2.5)
+        if (hasUpgrade('l', 14)) mult = mult.times(1.25)
+        if (hasUpgrade('l', 15)) mult = mult.times(3)
         // prestige
         if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
         if (hasUpgrade('p', 21)) mult = mult.times(upgradeEffect('p', 21))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        let exp = new Decimal(1)
         return exp
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
@@ -45,28 +49,48 @@ addLayer("p", {
         },
         12: {
             title: "A Nice Boost.",
-            description: "The Second Upgrade, Point gain increases as you gain more Prestige Points.",
+            description: "Point gain increases as you gain more Prestige Points.",
             cost: new Decimal(2),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.5); if (effect > 25) return 25; else return (effect)
+                const effect = player[this.layer].points.add(1).pow(0.5); if (effect > 25 && !hasUpgrade('l', 23)) return 25; else if (effect > 75 && hasUpgrade('l', 23)) return 75; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
         13: {
             title: "Woah! More Prestige Points?",
-            description: "The Third Upgrade, You gain more Prestige Points based off of Points.",
+            description: "You gain more Prestige Points based on Points.",
             cost: new Decimal(4),
             effect() {
-                return player.points.add(1).pow(0.1)
+                const effect = player.points.add(1).pow(0.15); if(effect > 50) return 50; else return (effect)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
+        14: {
+            title: "Power",
+            description: "More Prestige Points based on Points again but Stronger.",
+            unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
+            cost: new Decimal(5000),
+            effect() {
+                const effect = player.points.add(1).pow(0.2); if(effect > 100) return 100; else return (effect)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
+        15: {
+            title: "Prestige Power!",
+            description: "Previous upgrade but even STRONGER.",
+            unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
+            cost: new Decimal(250000),
+            effect() {
+                const effect = player.points.add(1).pow(0.25); if(effect > 200) return 200; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
         21: {
             title: "Upgrader",
-            description: "Doubles Prestige Point Gain, Useful for getting the other two Upgrades... Oh, thats why.",
+            description: "Doubles Prestige Point Gain",
             cost: new Decimal(7),
             effect() {
-               if (!hasUpgrade('p', 21)) return(1); else if (!hasUpgrade('p', 22)) return (2); else return (5)
+               if (!hasUpgrade('p', 21)) return(1); else if (!hasUpgrade('p', 22)) return (2); else if (!hasUpgrade('p', 24)) return (5); else if (!hasUpgrade('p', 25)) return (10); else return (25)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -77,12 +101,24 @@ addLayer("p", {
         },
         23: {
             title: "More Points!",
-            description: "Unlocks a new layer and Increases point gain by Prestige Points, But slightly Weaker.",
+            description: "Unlocks a new layer + A Nice Boost again But slightly Weaker.",
             cost: new Decimal(250),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.4); if (effect > 20) return 20; else return (effect)
+                const effect = player[this.layer].points.add(1).pow(0.4); if (effect > 20 && !hasUpgrade('l', 23)) return 20; else if (effect > 50 && hasUpgrade('l', 23)) return 50; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
+        24: {
+            title: "Upgrader++",
+            description: "Upgrade the Upgrader+ Upgrade",
+            unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
+            cost: new Decimal(500000),
+        },
+        25: {
+            title: "Upgrader+3",
+            description: "Upgrade the Upgrader++ upgrade and allow it to Boost Layer Points Half as much.",
+            unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
+            cost: new Decimal(2500000),
         },
     },
 })
