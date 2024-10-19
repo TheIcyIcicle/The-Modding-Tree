@@ -13,7 +13,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1?",
+	num: "0.0.0",
 	name: "Almost Ready for a Possible Release",
 }
 
@@ -71,7 +71,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("5e9"))
+	return player.points.gte(new Decimal("5e8"))
 }
 
 
