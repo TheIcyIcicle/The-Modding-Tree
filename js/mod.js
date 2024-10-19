@@ -14,16 +14,17 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0.0",
-	name: "Almost Ready for a Possible Release",
+	name: "The New Beginning of a New Tree",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0.0</h3><br>
 		- Three Layers.<br>
-		- Powerful Upgrades.<br>
-		- Let the Inflation Begin.`
+		- Multiple Upgrades.<br>
+		- Probably some inflation<br>
+		- Begin the Layers.`
 
-let winText = `Layer Up!`
+let winText = `Layers upon Layers upon Layers upon Layers upon Layers`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
