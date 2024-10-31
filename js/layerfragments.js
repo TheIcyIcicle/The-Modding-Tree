@@ -55,7 +55,7 @@ addLayer("lf", {
         13: {
             title: "Proper Layers (Endgame)",
             description: "Finally unlock a layer that ISN'T a Side Layer!",
-            cost: new Decimal(25),
+            cost: new Decimal(10),
         },
     },
 
