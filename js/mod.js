@@ -72,7 +72,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("5e8"))
+	return (hasUpgrade('lf', 13) && player.points.gte('5e9'))
 }
 
 

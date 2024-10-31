@@ -20,13 +20,14 @@ addLayer("l", {
     baseResource: "Prestige Points", // Name of resource prestige is based on
     baseAmount() {return player.p.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.2, // Prestige currency exponent
+    exponent: 0.35, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
         if (hasAchievement('a', 23)) mult = mult.times(1.5)
-        if (hasUpgrade('l', 21)) mult = mult.times(2)
+        if (hasAchievement('a', 24)) mult = mult.times(2.5)
+        if (hasUpgrade('l', 21)) mult = mult.times(4)
         if (hasUpgrade('lf', 11)) mult = mult.times(2)
-        if (hasUpgrade('p', 21)) mult = mult.times(upgradeEffect('p', 21)/2)
+        if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21)/2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -45,26 +46,26 @@ addLayer("l", {
         12: {
             title: "Layer Up!",
             description: "A Fragment of Power. 5x Points and 2.5x Prestige Points!",
-            cost: new Decimal(2),
+            cost: new Decimal(3),
         },
         13: {
             title: "Increment Layer.",
             description: "1.75x Points, Small Increase.",
-            cost: new Decimal(3),
+            cost: new Decimal(5),
         },
         14: {
             title: "Small Layers..",
             description: "2.5x Points, 1.25x Prestige Points, Still Small...",
-            cost: new Decimal(5),
+            cost: new Decimal(10),
         },
         15: {
             title: "Layer+",
             description: "5x Points again aswell as 3x Prestige Points. You'll be needing this.",
-            cost: new Decimal(10),
+            cost: new Decimal(25),
         },
         21: {
             title: "Layer of Power",
-            description: "Let there be another Layer! (oh and 2x layer points)",
+            description: "Let there be another Layer, and Quadruple Layer Points!",
             cost: new Decimal(50),
         },
         22: {
@@ -81,19 +82,19 @@ addLayer("l", {
             title: "Hardcap Boost",
             description: "Increase the Limit on 'A Nice Boost' and 'More Points'",
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
-            cost: new Decimal(200),
+            cost: new Decimal(250),
         },
         24: {
             title: "Shattered Layers",
             description: "Shatter the limits, LET THERE BE MORE PRESTIGE UPGRADES!",
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
-            cost: new Decimal(300),
+            cost: new Decimal(400),
         },
         25: {
             title: "Layer Boost",
             description: "Slightly Stronger variant of 'Fragmented Boost'",
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
-            cost: new Decimal(500),
+            cost: new Decimal(5000),
             effect() {
                 const effect = player[this.layer].points.add(1).pow(0.65); if (effect > 75) return 75; else return (effect)
             },
