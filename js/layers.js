@@ -23,10 +23,17 @@ addLayer("l", {
     exponent: 0.35, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
+        // Achievements
         if (hasAchievement('a', 23)) mult = mult.times(1.5)
         if (hasAchievement('a', 24)) mult = mult.times(2.5)
+        // Prestige Upgrades
+        // blank for now
+        // Layer Upgrades
         if (hasUpgrade('l', 21)) mult = mult.times(4)
+        // Layer Fragment Upgrades
         if (hasUpgrade('lf', 11)) mult = mult.times(2)
+        if (getBuyableAmount('lf', 11).gte(new Decimal(0))) mult = mult.times(getBuyableAmount('lf', 11).times(1.1))
+        // After Other Effects Upgrades
         if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21)/2)
         return mult
     },

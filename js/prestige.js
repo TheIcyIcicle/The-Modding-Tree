@@ -14,7 +14,7 @@ addLayer("p", {
             unlocked() {return true} // Determines if you can use the hotkey, optional
         }
     ],
-    color: "#38BDFE",
+    color: "#0086D1",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "Prestige Points", // Name of prestige currency
     baseResource: "Points", // Name of resource prestige is based on

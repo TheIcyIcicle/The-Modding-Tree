@@ -41,6 +41,19 @@ addLayer("lf", {
     row: 11, // Row the layer is in on the tree (0 is the first row)
     displayRow: 'side',
     layerShown(){return player.lf.unlocked || hasUpgrade('l', 21)},
+    buyables: {
+        11: {
+            cost(x){return new Decimal(5).pow(x)},
+            title: 'Fragment Power',
+            display(){return 'Increase Layer Point Gain by 1.1x'},
+            unlocked(){if (hasUpgrade('lf', 11)) return true; else return false},
+            canAfford(){return player.lf.fragments.gte(this.cost())},
+            buy(){
+                player.lf.fragments = player.lf.fragments.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+        },
+    },
     upgrades: {
         11: {
             title: "Fragmented Layers",
@@ -55,7 +68,7 @@ addLayer("lf", {
         13: {
             title: "Proper Layers (Endgame)",
             description: "Finally unlock a layer that ISN'T a Side Layer!",
-            cost: new Decimal(10),
+            cost: new Decimal(25),
         },
     },
 
