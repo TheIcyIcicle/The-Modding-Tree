@@ -65,7 +65,7 @@ addLayer("p", {
             description: "Point gain increases as you gain more Prestige Points.",
             cost: new Decimal(2),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.5); if (effect > 25 && !hasUpgrade('l', 23)) return 25; else if (effect > 75 && hasUpgrade('l', 23)) return 75; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.5); if (effect.gt(25) && !hasUpgrade('l', 23)) return 25; else if (effect.gt(75) && hasUpgrade('l', 23)) return 75; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -74,7 +74,7 @@ addLayer("p", {
             description: "You gain more Prestige Points based on Points.",
             cost: new Decimal(4),
             effect() {
-                const effect = player.points.add(1).pow(0.15); if(effect > 50) return 50; else return (effect)
+                let effect = player.points.add(1).pow(0.15); if(effect.gt(50)) return 50; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -84,7 +84,7 @@ addLayer("p", {
             unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
             cost: new Decimal(5000),
             effect() {
-                const effect = player.points.add(1).pow(0.2); if(effect > 100) return 100; else return (effect)
+                let effect = player.points.add(1).pow(0.2); if(effect.gt(100)) return 100; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -94,7 +94,7 @@ addLayer("p", {
             unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
             cost: new Decimal(250000),
             effect() {
-                const effect = player.points.add(1).pow(0.25); if(effect > 200) return 200; else return (effect)
+                let effect = player.points.add(1).pow(0.25); if(effect.gt(200)) return 200; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -117,7 +117,7 @@ addLayer("p", {
             description: "Unlocks a new layer + A Nice Boost again But slightly Weaker.",
             cost: new Decimal(250),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.4); if (effect > 20 && !hasUpgrade('l', 23)) return 20; else if (effect > 50 && hasUpgrade('l', 23)) return 50; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.4); if (effect.gt(20) && !hasUpgrade('l', 23)) return 20; else if (effect.gt(50) && hasUpgrade('l', 23)) return 50; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },

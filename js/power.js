@@ -62,7 +62,7 @@ addLayer("w", {
             description: "Boost Layer Points based on Layer Fragments",
             cost: new Decimal(50),
             effect() {
-                const effect = player.lf.points.add(1).pow(1.5); if (effect > 50) return 50
+                let effect = player.lf.points.add(1).pow(1.5); if (effect.gt(50)) return 50
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
         },
@@ -71,7 +71,7 @@ addLayer("w", {
             description: "Boost Layer Fragments based on Layer Points",
             cost: new Decimal(250),
             effect() {
-                const effect = player.l.points.add(1).pow(1.5); if (effect > 10) return 10
+                let effect = player.l.points.add(1).pow(1.5); if (effect.gt(10)) return 10
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
         },

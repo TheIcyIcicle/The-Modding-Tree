@@ -34,7 +34,7 @@ addLayer("l", {
         if (hasUpgrade('l', 21)) mult = mult.times(4)
         // Layer Fragment Upgrades
         if (hasUpgrade('lf', 11)) mult = mult.times(2)
-        if (getBuyableAmount('lf', 11).gte(new Decimal(0))) mult = mult.times(getBuyableAmount('lf', 11).times(1.1))
+        if (getBuyableAmount('lf', 11).gt(0)) mult = mult.times(getBuyableAmount('lf', 11).times(1.1))
         // After Other Effects Upgrades
         if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21).div(2))
         return mult
@@ -83,7 +83,7 @@ addLayer("l", {
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
             cost: new Decimal(100),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.75); if (effect > 50) return 50; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.75); if (effect.gt(50)) return 50; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -105,7 +105,7 @@ addLayer("l", {
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
             cost: new Decimal(5000),
             effect() {
-                const effect = player[this.layer].points.add(1).pow(0.65); if (effect > 75) return 75; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.65); if (effect.gt(75)) return 75; else return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
