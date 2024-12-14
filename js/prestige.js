@@ -14,7 +14,17 @@ addLayer("p", {
             unlocked() {return true} // Determines if you can use the hotkey, optional
         }
     ],
+    doReset(resettingLayer) {
+        let keep = [];
+        if (hasUpgrade('w', 13)) keep.push('upgrades')
+        if (layers[resettingLayer].row > this.row && (resettingLayer == "l" || resettingLayer == "w")) { 
+            layerDataReset(this.layer, keep);
+                
+        }
+        //anything u place here is for keeping specific things, like if(hasUpgrade('x',99))player.y.upgrades.push(11) if that makes sense
+    },
     color: "#0086D1",
+    branches: "w",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "Prestige Points", // Name of prestige currency
     baseResource: "Points", // Name of resource prestige is based on
@@ -33,6 +43,9 @@ addLayer("p", {
         // prestige
         if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
         if (hasUpgrade('p', 21)) mult = mult.times(upgradeEffect('p', 21))
+        // power
+        if (hasUpgrade('w', 11)) mult = mult.times(1.5)
+        if (hasUpgrade('w', 12)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses

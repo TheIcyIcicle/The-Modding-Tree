@@ -11,7 +11,7 @@ addLayer("a", {
     row: 'side',
     layerShown(){return true},
     achievements: {
-        rows: 2,
+        rows: 3,
         cols: 5,
         11: {
             name: "Prestige!",
@@ -109,7 +109,37 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 13))
             },
-            tooltip: "Third Layer Fragments Upgrade, Inflation is slowing down. (ENDGAME)",
+            tooltip: "Third Layer Fragments Upgrade, Inflation is slowing down.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        31: {
+            name: "The heck is this?",
+            done() {
+                return player.w.points.gte(3)
+            },
+            tooltip: "We aren't powering ANYTHING are we? Moreover, WHERE ARE WE GETTING THIS POWER???",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        32: {
+            name: "What have you done.",
+            done() {
+                return (hasUpgrade('w', 15))
+            },
+            tooltip: "We might be doomed if we get a uncapped boost based on layer fragments.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        33: {
+            name: "Lossless Resets",
+            done() {
+                return (hasUpgrade('lf', 14))
+            },
+            tooltip: "Somehow never lose Watt and Prestige Upgrades no matter What reset you do. (I have no idea how to fix it so im leaving it ingame for now so have fun!!! please dont spam it i beg please)",
             onComplete() {
                 addPoints('a', 1)
             },

@@ -32,6 +32,14 @@ addLayer("lf", {
     exponent: 0.35, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
+        // prestige Upgrades
+        // Blank
+        // Power Upgrades
+        if (hasUpgrade('w', 15)) mult = mult.times(upgradeEffect('w', 15))
+        // Layer Upgrades
+        // Blank
+        // Layer Fragment Upgrades
+        // Blank
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -66,9 +74,14 @@ addLayer("lf", {
             cost: new Decimal(2),
         },
         13: {
-            title: "Proper Layers (Endgame)",
+            title: "Proper Layers",
             description: "Finally unlock a layer that ISN'T a Side Layer!",
             cost: new Decimal(25),
+        },
+        14: {
+            title: "Upgrades Kept",
+            description: "Keep Watt Upgrades on Layer Resets",
+            cost: new Decimal(1250),
         },
     },
 

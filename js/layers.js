@@ -28,6 +28,8 @@ addLayer("l", {
         if (hasAchievement('a', 24)) mult = mult.times(2.5)
         // Prestige Upgrades
         // blank for now
+        // Power Upgrades
+        if (hasUpgrade('w', 14)) mult = mult.times(upgradeEffect('w', 14))
         // Layer Upgrades
         if (hasUpgrade('l', 21)) mult = mult.times(4)
         // Layer Fragment Upgrades

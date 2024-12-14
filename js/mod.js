@@ -3,7 +3,7 @@ let modInfo = {
 	id: "1stIcyDev",
 	author: "TheIcyIcicle",
 	pointsName: "Points",
-	modFiles: ["prestige.js", "achievements.js", "layers.js", "layerfragments.js", "tree.js"],
+	modFiles: ["prestige.js", "achievements.js", "power.js", "layers.js", "layerfragments.js", "tree.js"],
 
 	discordName: "TheIcyIcicle",
 	discordLink: "",
@@ -13,18 +13,22 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.0",
-	name: "The New Beginning of a New Tree",
+	num: "0.0.1",
+	name: "POWAHHH",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.0.1</h3><br>
+		- So begins the Power Layer.<br>
+		- Random Bug with Upgrade Keeping you get to have for now!<br>
+		- Three new achievements (literally nothing)<br>
 	<h3>v0.0.0</h3><br>
 		- Three Layers.<br>
 		- Multiple Upgrades.<br>
 		- Probably some inflation<br>
 		- Begin the Layers.`
 
-let winText = `Layers upon Layers upon Layers upon Layers upon Layers`
+let winText = `More New Layer Content When?`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -57,6 +61,8 @@ function getPointGen() {
 	// prestige
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
 	if (hasUpgrade('p', 23)) gain = gain.times(upgradeEffect('p', 23))
+	// power
+	if (hasUpgrade('w', 11)) gain = gain.times(1.25)
 	// exponents
 	if (hasUpgrade('lf', 12)) gain = gain.pow(1.1)
 	return gain
@@ -72,7 +78,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return (hasUpgrade('lf', 13) && player.points.gte('5e7'))
+	return (hasUpgrade('lf', 14) && player.points.gte('5e8'))
 }
 
 

@@ -14,8 +14,17 @@ addLayer("w", {
             unlocked() {return player.w.unlocked || hasUpgrade('lf', 13)} // Determines if you can use the hotkey, optional
         }
     ],
+    doReset(resettingLayer) {
+        let keep = [];
+        if (hasUpgrade('lf', 14)) keep.push('upgrades')
+        if (layers[resettingLayer].row > this.row && resettingLayer == "l") { 
+            layerDataReset(this.layer, keep);
+                
+        }
+        //anything u place here is for keeping specific things, like if(hasUpgrade('x',99))player.y.upgrades.push(11) if that makes sense
+    },
     color: "#F0FF2D",
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    requires: new Decimal(1000), // Can be a function that takes requirement increases into account
     resource: "Watts", // Name of prestige currency
     baseResource: "Prestige Points", // Name of resource prestige is based on
     baseAmount() {return player.p.points}, // Get the current amount of baseResource
@@ -23,6 +32,7 @@ addLayer("w", {
     exponent: 0.25, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
+        if (hasUpgrade('w', 12)) mult = mult.times(1.25)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -41,6 +51,29 @@ addLayer("w", {
             title: "Isn't this, just Layers again?",
             description: "2x Prestige Points and 1.25x Watts",
             cost: new Decimal(3),
+        },
+        13: {
+            title: "Maybe I Was Wrong.",
+            description: "Keep Prestige Upgrades on <p><s>Layer</s></p> LAYER FRAGMENTS?????/Watt Resets",
+            cost: new Decimal(10),
+        },
+        14: {
+            title: "Ooh more Layer Points?",
+            description: "Boost Layer Points based on Layer Fragments",
+            cost: new Decimal(50),
+            effect() {
+                const effect = player.lf.points.add(1).pow(1.5); if (effect > 50) return 50
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
+        },
+        15: {
+            title: "Boost Those Fragments!",
+            description: "Boost Layer Fragments based on Layer Points",
+            cost: new Decimal(250),
+            effect() {
+                const effect = player.l.points.add(1).pow(1.5); if (effect > 10) return 10
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
         },
     },
 })
