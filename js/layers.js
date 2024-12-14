@@ -36,7 +36,7 @@ addLayer("l", {
         if (hasUpgrade('lf', 11)) mult = mult.times(2)
         if (getBuyableAmount('lf', 11).gte(new Decimal(0))) mult = mult.times(getBuyableAmount('lf', 11).times(1.1))
         // After Other Effects Upgrades
-        if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21)/2)
+        if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21).div(2))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
