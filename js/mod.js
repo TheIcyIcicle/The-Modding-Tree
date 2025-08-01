@@ -3,7 +3,7 @@ let modInfo = {
 	id: "1stIcyDev",
 	author: "TheIcyIcicle",
 	pointsName: "Points",
-	modFiles: ["prestige.js", "achievements.js", "power.js", "layers.js", "layerfragments.js", "tree.js"],
+	modFiles: ["prestige.js", "achievements.js", "power.js", "system.js", "layers.js", "layerfragments.js", "tree.js"],
 
 	discordName: "TheIcyIcicle",
 	discordLink: "",
@@ -13,22 +13,26 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.1",
-	name: "POWAHHH",
+	num: "0.0.2",
+	name: "LAYERS",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0.1</h3><br>
+	<h3>v0.0.2 LAYERS</h3><br>
+		- More. Layers. <br>
+		- Timewalls :( <br>
+		- Quite a few upgrades. <br>
+	<h3>v0.0.1 POWAHHH</h3><br>
 		- So begins the Power Layer.<br>
 		- Random Bug with Upgrade Keeping you get to have for now!<br>
 		- Three new achievements (literally nothing)<br>
-	<h3>v0.0.0</h3><br>
+	<h3>v0.0.0 The Start</h3><br>
 		- Three Layers.<br>
 		- Multiple Upgrades.<br>
 		- Probably some inflation<br>
 		- Begin the Layers.`
 
-let winText = `More New Layer Content When?`
+let winText = `Where is this going exactly?`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -50,21 +54,24 @@ function getPointGen() {
 
 	let gain = new Decimal(1)
 	// additives
-	if (hasUpgrade('p', 11)) gain = gain.add(1.5)
+	if (hasUpgrade('p', 11)) gain = gain.add('1.5')
 	// achievements
-	if (hasAchievement('a', 13)) gain = gain.times(2.5)
+	if (hasAchievement('a', 13)) gain = gain.times('2.5')
 	// layers
-	if (hasUpgrade('l', 12)) gain = gain.times(5)
-	if (hasUpgrade('l', 13)) gain = gain.times(1.75)
-	if (hasUpgrade('l', 14)) gain = gain.times(2.5)
-	if (hasUpgrade('l', 15)) gain = gain.times(5)
+	if (hasUpgrade('l', 12)) gain = gain.times('5')
+	if (hasUpgrade('l', 13)) gain = gain.times('1.75')
+	if (hasUpgrade('l', 14)) gain = gain.times('2.5')
+	if (hasUpgrade('l', 15)) gain = gain.times('5')
 	// prestige
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
 	if (hasUpgrade('p', 23)) gain = gain.times(upgradeEffect('p', 23))
 	// power
-	if (hasUpgrade('w', 11)) gain = gain.times(1.25)
+	if (hasUpgrade('w', 11)) gain = gain.times('1.25')
+	// system
+	// blank
 	// exponents
-	if (hasUpgrade('lf', 12)) gain = gain.pow(1.1)
+	if (hasUpgrade('lf', 12)) gain = gain.pow('1.1')
+	if (hasUpgrade('lf', 22)) gain = gain.pow('1.1')
 	return gain
 }
 
@@ -78,7 +85,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return (hasUpgrade('lf', 14) && player.points.gte('5e8'))
+	return (hasUpgrade('s', 25) && player.points.gte('5e50'))
 }
 
 

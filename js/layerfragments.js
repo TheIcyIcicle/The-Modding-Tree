@@ -24,7 +24,7 @@ addLayer("lf", {
         }
     ],
     color: "#757575",
-    requires: new Decimal(100), // Can be a function that takes requirement increases into account
+    requires: new Decimal('100'), // Can be a function that takes requirement increases into account
     resource: "Layer Fragments", // Name of prestige currency
     baseResource: "Layer Points", // Name of resource prestige is based on
     baseAmount() {return player.l.points}, // Get the current amount of baseResource
@@ -32,10 +32,11 @@ addLayer("lf", {
     exponent: 0.35, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
-        // prestige Upgrades
+        // Prestige Upgrades
         // Blank
         // Power Upgrades
         if (hasUpgrade('w', 15)) mult = mult.times(upgradeEffect('w', 15))
+        if (hasUpgrade('w', 25)) mult = mult.times(upgradeEffect('w', 25)/2)
         // Layer Upgrades
         // Blank
         // Layer Fragment Upgrades
@@ -53,7 +54,7 @@ addLayer("lf", {
         11: {
             cost(x){return new Decimal(5).pow(x)},
             title: 'Fragment Power',
-            display(){return 'Increase Layer Point Gain by 1.1x'},
+            display(){if (!hasUpgrade('lf', 15)) return 'Increase Layer Point Gain by 1.1x'; else if (hasUpgrade('lf', 15)) return 'Increase Layer Point Gain by 1.25x'},
             unlocked(){if (hasUpgrade('lf', 11)) return true; else return false},
             canAfford(){return player.lf.fragments.gte(this.cost())},
             buy(){
@@ -66,22 +67,45 @@ addLayer("lf", {
         11: {
             title: "Fragmented Layers",
             description: "2x Layer Points Begin Fragment Generation",
-            cost: new Decimal(1),
+            cost: new Decimal('1'),
         },
         12: {
             title: "Fragmented Points",
             description: "^1.1 Points, 2x Prestige Points More layer Upgrades, Inflate.",
-            cost: new Decimal(2),
+            cost: new Decimal('2'),
         },
         13: {
             title: "Proper Layers",
             description: "Finally unlock a layer that ISN'T a Side Layer!",
-            cost: new Decimal(25),
+            cost: new Decimal('25'),
         },
         14: {
             title: "Upgrades Kept",
             description: "Keep Watt Upgrades on Layer Resets",
-            cost: new Decimal(1250),
+            cost: new Decimal('1250'),
+        },
+        15: {
+            title: "Careful with this.",
+            description: "Boost Fragment Power to 1.25x per. Add more watt upgrades as well.",
+            cost: new Decimal('6250'),
+        },
+        21: {
+            title: "Fragmented Fragmented Layers",
+            description: "uh... 5x Layer Points and 2x Fragment generation.",
+            unlocked(){if (hasUpgrade('w', 25)) return true; else return false},
+            cost: new Decimal('10000'),
+        },
+        22: {
+            title: "Fragmented Fragmented Points",
+            description: "is... this gonna continue? ^1.1 Points again, 2.5x Prestige Points.",
+            unlocked(){if (hasUpgrade('w', 25)) return true; else return false},
+            cost: new Decimal('20000'),
+        },
+        23: {
+            title: "Layers upon Layers.",
+            description: "Unlock another layer.",
+            unlocked(){if (hasUpgrade('w', 25)) return true; else return false},
+            cost: new Decimal('250000'),
         },
     },
 

@@ -144,5 +144,55 @@ addLayer("a", {
                 addPoints('a', 1)
             },
         },
+        34: {
+            name: "MORE",
+            done() {
+                return (hasUpgrade('lf', 15))
+            },
+            tooltip: "ARE WE SURE THIS IS SAFE? this isn't gonna, inflate layer points or anything... RIGHT?",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        35: {
+            name: "oh dear.",
+            done() {
+                return (hasUpgrade('w', 25))
+            },
+            tooltip: "the watts are mega now :fearful:",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        41: {
+            name: "Further Fragmentation",
+            done() {
+                return (hasUpgrade('lf', 21))
+            },
+            tooltip: "This... Doesn't even make Sense? Reward: 2x Watts",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        42: {
+            name: "Power On",
+            done() {
+                return (hasUpgrade('lf', 23))
+            },
+            tooltip: "Well... I got my answer, this is what we're Powering.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        43: {
+            name: "Buttons :)",
+            done() {
+                return (hasUpgrade('s', 15))
+            },
+            tooltip: "ok but seriously, what do these buttons do? Reward: 5x Watts",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
     }
 })

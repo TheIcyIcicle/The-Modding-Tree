@@ -15,7 +15,7 @@ addLayer("l", {
         }
     ],
     color: "#575757",
-    requires: new Decimal(500), // Can be a function that takes requirement increases into account
+    requires: new Decimal('500'), // Can be a function that takes requirement increases into account
     resource: "Layer Points", // Name of prestige currency
     baseResource: "Prestige Points", // Name of resource prestige is based on
     baseAmount() {return player.p.points}, // Get the current amount of baseResource
@@ -24,17 +24,21 @@ addLayer("l", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
         // Achievements
-        if (hasAchievement('a', 23)) mult = mult.times(1.5)
-        if (hasAchievement('a', 24)) mult = mult.times(2.5)
+        if (hasAchievement('a', 23)) mult = mult.times('1.5')
+        if (hasAchievement('a', 24)) mult = mult.times('2.5')
         // Prestige Upgrades
         // blank for now
         // Power Upgrades
         if (hasUpgrade('w', 14)) mult = mult.times(upgradeEffect('w', 14))
+        if (hasUpgrade('w', 25)) mult = mult.times(upgradeEffect('w', 25))
+        // System Upgrades
+        // Blank
         // Layer Upgrades
-        if (hasUpgrade('l', 21)) mult = mult.times(4)
+        if (hasUpgrade('l', 21)) mult = mult.times('4')
         // Layer Fragment Upgrades
-        if (hasUpgrade('lf', 11)) mult = mult.times(2)
-        if (getBuyableAmount('lf', 11).gt(0)) mult = mult.times(getBuyableAmount('lf', 11).times(1.1))
+        if (hasUpgrade('lf', 11)) mult = mult.times('2')
+        if (hasUpgrade('lf', 21)) mult = mult.times('5')
+        if (getBuyableAmount('lf', 11).gt(0) && !hasUpgrade('lf', 15)) mult = mult.times(getBuyableAmount('lf', 11).times(1.1)); else if (getBuyableAmount('lf', 11).gt(0) && hasUpgrade('lf', 15)) mult = mult.times(getBuyableAmount('lf', 11).times(1.25))
         // After Other Effects Upgrades
         if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21)/2)
         return mult
@@ -83,7 +87,8 @@ addLayer("l", {
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
             cost: new Decimal(100),
             effect() {
-                let effect = player[this.layer].points.add(1).pow(0.75); if (effect.gt(50)) return 50; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.75).min(50)
+                return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
@@ -105,7 +110,8 @@ addLayer("l", {
             unlocked(){if (hasUpgrade('lf', 12)) return true; else return false},
             cost: new Decimal(5000),
             effect() {
-                let effect = player[this.layer].points.add(1).pow(0.65); if (effect.gt(75)) return 75; else return (effect)
+                let effect = player[this.layer].points.add(1).pow(0.65).min(75)
+                return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         },
