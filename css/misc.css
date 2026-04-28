@@ -54,6 +54,12 @@
 
 }
 
+.vertical-slider {
+    writing-mode: vertical-lr;
+    direction: ltr;
+    transform: rotate(-180deg);
+}
+
 .tooltip::after {
     content: " ";
     position: absolute;

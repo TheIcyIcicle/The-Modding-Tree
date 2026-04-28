@@ -572,6 +572,15 @@ function loadVue() {
 		`
 	})
 
+	// Updates the value in player[layer][data][0]
+	Vue.component('vert-slider', {
+		props: ['layer', 'data'],
+		template: `
+			<div class="tooltipBox">
+			<tooltip :text="player[layer][data[0]]"></tooltip><input type="range" class="vertical-slider" v-model="player[layer][data[0]]" :min="data[1]" :max="data[2]"></div>
+		`
+	})
+
 	// Updates the value in player[layer][data[0]], options are an array in data[1]
 	Vue.component('drop-down', {
 		props: ['layer', 'data'],

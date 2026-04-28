@@ -60,6 +60,12 @@ addLayer("p", {
     row: 0, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return true},
     upgrades: {
+        99: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){return false},
+            cost: new Decimal('1e100'),
+        },
         11: {
             title: "Newly Prestiged",
             description: "The First Upgrade, Point gain increased.",
@@ -150,6 +156,66 @@ addLayer("p", {
             description: "Upgrade the Upgrader++ upgrade and allow it to Boost Layer Points Half as much.",
             unlocked(){if (hasUpgrade('l', 24)) return true; else return false},
             cost: new Decimal('2.5e6'),
+        },
+        31: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        32: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        33: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        34: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        35: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        41: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        42: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        43: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        44: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        45: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked(){if (hasUpgrade('lf', 35)) return true; else return false},
+            cost: new Decimal('1e100'),
         },
     },
 })

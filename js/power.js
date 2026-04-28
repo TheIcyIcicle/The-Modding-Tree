@@ -42,6 +42,7 @@ addLayer("w", {
         if (hasUpgrade('w', 25)) mult = mult.times(upgradeEffect('w', 25))
         // System Upgrades
         if (hasUpgrade('s', 11)) mult = mult.times('10')
+        if (hasUpgrade('s', 22)) mult = mult.times('5')
         // Layer Upgrades
         // Blank
         // Layer Fragment Upgrades

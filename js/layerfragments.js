@@ -13,7 +13,11 @@ addLayer("lf", {
         player.lf.fragments = player.lf.fragments.add(fragmentGain)
     },
     fragmentGain(){
-        if (hasUpgrade('lf', 11) || player.lf.fragments.gt(0)) return player.lf.points.add(1).pow(0.5); else return new Decimal(0)
+        if (player.lf.fragments.lte(0) && !hasUpgrade('lf', 11)) return Decimal.dZero;
+        let gain = player.lf.points.plus(1).pow(0.5);
+        if (hasUpgrade('lf', 21))gain = gain.times('2');
+        if (hasUpgrade('s', 25))gain = gain.times('10')
+        return gain;
     },
     hotkeys: [
         {
@@ -37,6 +41,8 @@ addLayer("lf", {
         // Power Upgrades
         if (hasUpgrade('w', 15)) mult = mult.times(upgradeEffect('w', 15))
         if (hasUpgrade('w', 25)) mult = mult.times(upgradeEffect('w', 25)/2)
+        // System Upgrades
+        if (hasUpgrade('s', 25)) mult = mult.times('5')
         // Layer Upgrades
         // Blank
         // Layer Fragment Upgrades
@@ -107,6 +113,70 @@ addLayer("lf", {
             unlocked(){if (hasUpgrade('w', 25)) return true; else return false},
             cost: new Decimal('250000'),
         },
+        24: {
+            title: "Generating Currencies.",
+            description: "Boost Prestige Points and Watts.",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('275000'),
+        },
+        25: {
+            title: "Self-Sustaining Loop.",
+            description: "Boost Systems and Watts based on Layer Fragments.",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('350000'),
+            effect() {
+                let effect = player[this.layer].points.add(1).pow(0.75).log(10).max(1).min(50)
+                return (effect)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
+        31: {
+            title: "Placeholder",
+            description: "Placeholder",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        32: {
+            title: "Placerholder",
+            description: "Placeholder",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        33: {
+            title: "Placerholder",
+            description: "Placeholder",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        34: {
+            title: "Placerholder",
+            description: "Placeholder",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        35: {
+            title: "Prestige Expansion",
+            description: "Oh for goodness sake, we CANNOT keep doing this. Expand Prestige Upgrades by Two Rows.",
+            unlocked(){if (hasUpgrade('s', 25)) return true; else return false},
+            cost: new Decimal('5e7'),
+        },
     },
-
-})
+    tabFormat: {
+        "Upgrades": {
+            content: [
+                "main-display",
+                "prestige-button",
+                "blank",
+                "upgrades"],
+            unlocked(){if (hasUpgrade('lf', 11)) return true; else return false}
+        },
+        "FRAGMENTED": {
+            content: [
+                ["display-text",
+                    function(){return "You have "+format(player.lf.fragments)+" Fragments"}],
+                "blank",
+                "buyables"
+            ],
+            unlocked(){if (hasUpgrade('lf', 11)) return true; else return false}
+        }
+}})

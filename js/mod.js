@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "The Layered Tree",
+	name: "The Meta Layer Tree",
 	id: "1stIcyDev",
 	author: "TheIcyIcicle",
 	pointsName: "Points",
@@ -10,11 +10,16 @@ let modInfo = {
 	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 4,  // In hours
 }
+function Rand(min, max, int=true) {
+	if (min > max) {[min, max] = [max, min];}
+	if (int) return Math.floor(Math.random()*(max-min+1))+min;
+	else return Math.random()*(max-min)+min
+}
 
 // Set your version in num and name
 let VERSION = {
 	num: "0.0.2",
-	name: "LAYERS",
+	name: "WHERE DID THIS 'Meta' COME FROM? WE AREN'T META! ...wait a second",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -22,6 +27,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- More. Layers. <br>
 		- Timewalls :( <br>
 		- Quite a few upgrades. <br>
+		- Rename from 'The Layered Tree' to 'The Meta Layer Tree' as result of the poll. <br>
 	<h3>v0.0.1 POWAHHH</h3><br>
 		- So begins the Power Layer.<br>
 		- Random Bug with Upgrade Keeping you get to have for now!<br>
@@ -32,7 +38,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Probably some inflation<br>
 		- Begin the Layers.`
 
-let winText = `Where is this going exactly?`
+let winText = `EVERCHANGING LAYERS, EVERLASTING TIMEFRAMES.`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -53,25 +59,26 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	// additives
+	// Additives
 	if (hasUpgrade('p', 11)) gain = gain.add('1.5')
-	// achievements
+	// Achievements
 	if (hasAchievement('a', 13)) gain = gain.times('2.5')
-	// layers
+	// Layer Upgrades
 	if (hasUpgrade('l', 12)) gain = gain.times('5')
 	if (hasUpgrade('l', 13)) gain = gain.times('1.75')
 	if (hasUpgrade('l', 14)) gain = gain.times('2.5')
 	if (hasUpgrade('l', 15)) gain = gain.times('5')
-	// prestige
+	// Prestige Upgrades
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
 	if (hasUpgrade('p', 23)) gain = gain.times(upgradeEffect('p', 23))
-	// power
+	// Power Upgrades
 	if (hasUpgrade('w', 11)) gain = gain.times('1.25')
-	// system
+	// System
 	// blank
-	// exponents
+	// Exponents
 	if (hasUpgrade('lf', 12)) gain = gain.pow('1.1')
 	if (hasUpgrade('lf', 22)) gain = gain.pow('1.1')
+	if (hasUpgrade('s', 14)) gain = gain.pow('1.35')
 	return gain
 }
 

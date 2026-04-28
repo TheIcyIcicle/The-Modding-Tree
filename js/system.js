@@ -5,6 +5,9 @@ addLayer("s", {
     startData() { return {
         unlocked: false,
 		points: new Decimal(0),
+        clickables: {11: false, 12: false, 21: false, 22: false},
+        SliderOne: 0,
+        SliderTwo: 0,
     }},
     hotkeys: [
         {
@@ -37,7 +40,9 @@ addLayer("s", {
         // Power Upgrades
         // Blank
         // System Upgrades
-        // Blank
+        if (hasUpgrade('s', 21)) mult = mult.times('2')
+        if (hasUpgrade('s', 23)) mult = mult.times('4')
+        if (hasUpgrade('s', 24)) mult = mult.times('10')
         // Layer Upgrades
         // Blank
         // Layer Fragment Upgrades
@@ -50,6 +55,32 @@ addLayer("s", {
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return player.s.unlocked || hasUpgrade('lf', 23)},
+    clickables: {
+        11: {
+            title: "DEBUG",
+            display(){if (getClickableState('s', 11) == true) return 'REGISTRY CORRUPTION DETECTED.'; else return 'SYSTEM FUNCTIONING AS USUAL.'},
+            canClick(){if (getClickableState('s', 11) == true) return true; else return false},
+            onClick(){setClickableState('s', 11, false)}
+        },
+        12: {
+            title: "OVERRIDE",
+            display(){if (getClickableState('s', 12) == true) return 'SYSTEM INFILTRATION DETECTED.'; else return 'SYSTEM FUNCTIONING AS USUAL.'},
+            canClick(){if (getClickableState('s', 12) == true) return true; else return false},
+            onClick(){setClickableState('s', 12, false)}
+        },
+        21: {
+            title: "SCAN",
+            display(){if (getClickableState('s', 21) == true) return 'POSSIBLE VIRUSES DETECTED.'; else return 'SYSTEM FUNCTIONING AS USUAL.'},
+            canClick(){if (getClickableState('s', 21) == true) return true; else return false},
+            onClick(){setClickableState('s', 21, false)}
+        },
+        22: {
+            title: "RESTART",
+            display(){if (getClickableState('s', 22) == true) return 'NEW SYSTEM UPDATE DETECTED.'; else return 'SYSTEM FUNCTIONING AS USUAL.'},
+            canClick(){if (getClickableState('s', 22) == true) return true; else return false},
+            onClick(){setClickableState('s', 22, false)}
+        }
+    },
     upgrades: {
         11: {
             title: "Power ON",
@@ -77,34 +108,35 @@ addLayer("s", {
             cost: new Decimal('35'),
         },
         21: {
-            title: "Power ON",
-            description: "10x Watts",
-            cost: new Decimal('1'),
+            title: "System Overdrive",
+            description: "2x Systems",
+            cost: new Decimal('125'),
         },
         22: {
-            title: "Power ON",
-            description: "10x Watts",
-            cost: new Decimal('1'),
+            title: "Optimizations",
+            description: "5x Watts",
+            cost: new Decimal('275'),
         },
         23: {
-            title: "Power ON",
-            description: "10x Watts",
-            cost: new Decimal('1'),
+            title: "New Processor",
+            description: "4x Systems",
+            cost: new Decimal('525'),
         },
         24: {
-            title: "Power ON",
-            description: "10x Watts",
-            cost: new Decimal('1'),
+            title: "Maximum Overclock",
+            description: "10x Systems",
+            cost: new Decimal('1000'),
         },
         25: {
-            title: "Power ON",
-            description: "10x Watts",
-            cost: new Decimal('1'),
+            title: "/:Generate\n"+"Fragments",
+            description: "Boost your Currency Gains and unlock new upgrades in Layer Fragments.",
+            cost: new Decimal('2500'),
         },
 },
     tabFormat: {
         "Upgrades": {
-            content: ["main-display",
+            content: [
+                "main-display",
                 "prestige-button",
                 "blank",
                 "upgrades"],
@@ -112,9 +144,15 @@ addLayer("s", {
         },
         "SYSTEM:BOOT": {
             content: [
-
+                ["display-text",
+                    function(){if ([11,12,21,22].every(id => getClickableState('s', id) == false)) return 'SYSTEMS GREEN.'; else return 'WARNING SYSTEM INSTABILITY DETECTED'}],
+                "blank",
+                ["row", ["clickables",
+                        "blank", "blank", "blank",
+                        ["vert-slider", ["SlideOne", 0, 50]],
+                        "blank", "blank", "blank",
+                        ["vert-slider", ["SlideTwo", 0, 100]]]]
             ],
             unlocked(){if (hasUpgrade('s', 15)) return true; else return false}
         }
-
 }})

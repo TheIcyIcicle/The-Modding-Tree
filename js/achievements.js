@@ -11,7 +11,7 @@ addLayer("a", {
     row: 'side',
     layerShown(){return true},
     achievements: {
-        rows: 3,
+        rows: 4,
         cols: 5,
         11: {
             name: "Prestige!",
@@ -59,7 +59,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('l', 12))
             },
-            tooltip: "Purchase the second Layer Upgrade.",
+            tooltip: "Purchase the second ??? Upgrade.",
+            doneTooltip: "Purchase the second Layer Upgrade",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -69,7 +70,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('l', 15))
             },
-            tooltip: "Purchase the Fifth Layer Upgrade.",
+            tooltip: "Purchase the Fifth ??? Upgrade.",
+            doneTooltip: "Purchase the Fifth Layer Upgrade.",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -79,7 +81,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('l', 21))
             },
-            tooltip: "Unlock another Layer from Layers. This is getting more confusing to say every second...",
+            tooltip: "Unlock another Layer from ???'s. This is getting more confusing to say every second...",
+            doneTooltip: "Unlock another Layer from Layers. This is getting more confusing to say every second...",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -89,7 +92,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 12))
             },
-            tooltip: "Get the second upgrade in the Layer Fragments Layer. Reward: 1.5x Layer Points",
+            tooltip: "Get the second upgrade in the ??? Layer. Reward: 1.5x ??? Points",
+            doneTooltip: "Get the second upgrade in the Layer Fragments Layer. Reward: 1.5x Layer Points",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -99,7 +103,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('p', 14))
             },
-            tooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x Layer Points",
+            tooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x ??? Points",
+            doneTooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x Layer Points",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -109,7 +114,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 13))
             },
-            tooltip: "Third Layer Fragments Upgrade, Inflation is slowing down.",
+            tooltip: "Third ??? Upgrade, Inflation is slowing down.",
+            doneTooltip: "Third Layer Fragments Upgrade, Inflation is slowing down.",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -129,7 +135,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('w', 15))
             },
-            tooltip: "We might be doomed if we get a uncapped boost based on layer fragments.",
+            tooltip: "We might be doomed if we get a uncapped boost based on ???.",
+            doneTooltip: "We might be doomed if we get a uncapped boost based on layer fragments.",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -139,7 +146,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 14))
             },
-            tooltip: "Somehow never lose Watt and Prestige Upgrades no matter What reset you do. (I have no idea how to fix it so im leaving it ingame for now so have fun!!! please dont spam it i beg please)",
+            tooltip: "Never lose ??? and Prestige Upgrades on any reset not related to ???",
+            doneTooltip: "Yeah, so i dont know how to fix it so you get to keep Watt and Prestige Upgrades for every reset. have fun! i might need to rebalance *SOME* things because of this.",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -149,7 +157,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 15))
             },
-            tooltip: "ARE WE SURE THIS IS SAFE? this isn't gonna, inflate layer points or anything... RIGHT?",
+            tooltip: "ARE WE SURE THIS IS SAFE? this isn't gonna, inflate ??? points or anything... RIGHT?",
+            doneTooltip: "ARE WE SURE THIS IS SAFE? this isn't gonna, inflate Layer points or anything... RIGHT?",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -159,7 +168,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('w', 25))
             },
-            tooltip: "the watts are mega now :fearful:",
+            tooltip: "the ???'s are mega now :fearful:",
+            doneTooltip: "the watts are mega now :fearful:",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -169,7 +179,8 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('lf', 21))
             },
-            tooltip: "This... Doesn't even make Sense? Reward: 2x Watts",
+            tooltip: "This... Doesn't even make Sense? Reward: 2x ???'s",
+            doneTooltip: "This... Doesn't even make Sense? Reward: 2x Watts",
             onComplete() {
                 addPoints('a', 1)
             },
@@ -189,7 +200,30 @@ addLayer("a", {
             done() {
                 return (hasUpgrade('s', 15))
             },
-            tooltip: "ok but seriously, what do these buttons do? Reward: 5x Watts",
+            tooltip: "ok but seriously, what do these buttons do? Reward: 5x ???'s",
+            doneTooltip: "ok but seriously, what do these buttons do? Reward: 5x Watts",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        44: {
+            name: "wha- MORE?!",
+            done() {
+                return (hasUpgrade('s', 25))
+            },
+            tooltip: "are we serious?!",
+            doneTooltip: "More... Layer Fragment Upgrades... This layer is SO annoying...",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        45: {
+            name: "THE LAYERS ARE EXPANDING",
+            done() {
+                return (hasUpgrade('lf', 35))
+            },
+            tooltip: "NOOOO",
+            doneTooltip: "WHY DOES THIS KEEP HAPPENING WE CANT KEEP GETTING AWAY WITH THIS",
             onComplete() {
                 addPoints('a', 1)
             },
