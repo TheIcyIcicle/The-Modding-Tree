@@ -56,7 +56,7 @@ var colors = {
 		1: "#696969",//Grey
 		2: "#000000",//Black
 		3: "#592D10",//Brown *interesting choice, but i dont judge!*
-		color: "#165910",//Dark Green
+		color: "#1a7512",//Dark Green
 		points: "#6e27b4",//Dark Purple
 		locked: "#700707",//Dark Red
 		background: "#06477D",//Dark Blue
