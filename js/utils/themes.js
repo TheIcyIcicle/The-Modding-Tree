@@ -1,5 +1,5 @@
 // ************ Themes ************
-var themes = ["default", "aqua", "crimson", "frosted", "cosmic", "icantsee"]
+var themes = ["default", "aqua", "crimson", "frosted", "cosmic", "sigma67ler", "icantsee"]
 
 var colors = {
 	default: {
@@ -51,6 +51,16 @@ var colors = {
 		locked: "#6e0d06",
 		background: "#000000",
 		background_tooltip: "rgba(21, 32, 44, 0.75)",
+	},
+	sigma67ler: {
+		1: "#696969",//Grey
+		2: "#000000",//Black
+		3: "#592D10",//Brown *interesting choice, but i dont judge!*
+		color: "#165910",//Dark Green
+		points: "#511C85",//Dark Purple
+		locked: "#700707",//Dark Red
+		background: "#06477D",//Dark Blue
+		background_tooltip: "rgb(172, 105, 105)",//Light Pink
 	},
 	icantsee: {
 		1: "#ffffff",
